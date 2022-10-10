@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.acp1.myplace.dto.JwtResponse;
 import com.acp1.myplace.dto.UserRegister;
+import com.acp1.myplace.services.JwtManager;
 import com.acp1.myplace.services.UserService;
 
 @RestController
@@ -16,14 +18,17 @@ public class UsersController {
 
     private UserService userService;
 
-    public UsersController(UserService userService) {
+    private JwtManager jwtManager;
+
+    public UsersController(UserService userService, JwtManager jwtManager) {
         this.userService = userService;
+        this.jwtManager = jwtManager;
     }
 
     @PostMapping("/register")
-    public String getConfiguration(@RequestBody @Valid UserRegister user){
+    public JwtResponse signUpUser(@RequestBody @Valid UserRegister user){
         userService.registerNewUser(user);
-        return "Hello";
+        return jwtManager.generateToken(user.getMail());
     }
 
 }

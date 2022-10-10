@@ -12,14 +12,20 @@ public class UserServiceImpl implements UserService{
     // TODO agregar repositorio
 
     @Override
-    public String registerNewUser(UserRegister user) {
+    public Object registerNewUser(UserRegister user) {
         // TODO 
         // if(repositorio.findUserByMail(user.getMail()).isPresent()){
         //     throw new UserAlreadyRegistered();
         // }
         // repositorio.save(user);
 
-        return "OK"; // TODO ver respuesta
+        return "OK"; // TODO cambiar al usuario
+    }
+
+    @Override
+    public Object getUserByMail(String mail) {
+        // TODO Buscar el usuario por mail
+        return null;
     }
     
 }
