@@ -28,7 +28,7 @@ public class UsersController {
     @PostMapping("/register")
     public JwtResponse signUpUser(@RequestBody @Valid UserRegister user){
         userService.registerNewUser(user);
-        return jwtManager.generateToken(user.getMail());
+        return jwtManager.generateToken(user.getEmail());
     }
 
 }
