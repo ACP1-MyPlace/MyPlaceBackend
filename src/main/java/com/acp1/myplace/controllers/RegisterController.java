@@ -14,13 +14,13 @@ import com.acp1.myplace.services.UserService;
 
 @RestController
 @RequestMapping("api/v1/users")
-public class UsersController {
+public class RegisterController {
 
     private UserService userService;
 
     private JwtManager jwtManager;
 
-    public UsersController(UserService userService, JwtManager jwtManager) {
+    public RegisterController(UserService userService, JwtManager jwtManager) {
         this.userService = userService;
         this.jwtManager = jwtManager;
     }
@@ -28,7 +28,7 @@ public class UsersController {
     @PostMapping("/register")
     public JwtResponse signUpUser(@RequestBody @Valid UserRegister user){
         userService.registerNewUser(user);
-        return jwtManager.generateToken(user.getEmail());
+        return jwtManager.generateToken(user.getMail(), user.getType());
     }
 
 }

@@ -2,6 +2,7 @@ package com.acp1.myplace.model;
 
 import com.acp1.myplace.domain.UserType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +14,6 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "users")
 public class User {
     @Id
@@ -34,4 +34,13 @@ public class User {
 
     @Column @NotNull
     private UserType type;
+
+    @Builder
+    public User(@NotNull String email, String firstName, String password, String lastName, @NotNull UserType type) {
+        this.email = email;
+        this.firstName = firstName;
+        this.password = password;
+        this.lastName = lastName;
+        this.type = type;
+    }
 }

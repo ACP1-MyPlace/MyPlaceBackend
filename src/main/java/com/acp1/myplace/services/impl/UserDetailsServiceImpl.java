@@ -21,10 +21,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
-        
-        var user = userService.getUserByMail(mail); // TODO get user
-
-        return new User("string@string", "password", new ArrayList<>());
+        var user = userService.getUserByMail(mail);
+        return new User(mail, user.getPassword(), new ArrayList<>());
     }
     
 
