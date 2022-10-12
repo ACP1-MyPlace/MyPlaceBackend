@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.acp1.myplace.domain.UserType;
 import com.acp1.myplace.dto.JwtResponse;
 import com.acp1.myplace.services.JwtManager;
 
@@ -61,10 +62,10 @@ public class JwtManagerImpl implements JwtManager {
     }
     
     @Override
-    public JwtResponse generateToken(String mail) {
+    public JwtResponse generateToken(String mail, UserType userType) {
         
         Map<String, Object> claims = new HashMap<>();
-        //claims.put("userId", userId);
+        claims.put("userType", userType);
         return new JwtResponse(generateToken(claims, mail));
     }
 

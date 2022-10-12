@@ -1,10 +1,14 @@
 package com.acp1.myplace.services;
 
 import com.acp1.myplace.dto.UserRegister;
+import com.acp1.myplace.dto.UsernamePasswordLogin;
+import com.acp1.myplace.model.User;
 
 public interface UserService {
     
-    Object registerNewUser(UserRegister user); // TODO cambiar al tipo de usuario
+    void registerNewUser(UserRegister user);
 
-    Object getUserByMail(String mail); // TODO cambiar al tipo de usuario
+    User getUserByMail(String email);
+
+    User validateUsernameAndPassword(UsernamePasswordLogin userAndPassword);
 }

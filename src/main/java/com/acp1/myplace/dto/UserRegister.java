@@ -18,7 +18,7 @@ public class UserRegister {
 
     private static final int MIN_PASSWORD_LENGTH = 6;
 
-    private @Email String email;
+    private @Email String mail;
     private @Size(min=MIN_PASSWORD_LENGTH) String password;
     private @NotBlank String firstName;
     private @NotBlank String lastName;
