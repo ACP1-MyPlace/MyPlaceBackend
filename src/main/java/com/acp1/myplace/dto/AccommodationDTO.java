@@ -34,9 +34,9 @@ public class AccommodationDTO {
 
     @NotNull private Integer bathroomCount;
 
-    @NotNull private Boolean garage;
+    @NotNull private boolean garageAvailable;
 
-    @NotNull private Boolean petsAvailable;
+    @NotNull private boolean petsAvailable;
 
     @NotNull private List<AccommodationService> services;
 

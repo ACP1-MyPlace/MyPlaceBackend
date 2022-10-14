@@ -43,10 +43,10 @@ public class Accommodation {
     private Integer bathroomCount;
 
     @NotNull
-    private Boolean garage;
+    private boolean garage;
 
     @NotNull
-    private Boolean petsAvailable;
+    private boolean petsAvailable;
 
     @NotNull
     private List<AccommodationService> services;

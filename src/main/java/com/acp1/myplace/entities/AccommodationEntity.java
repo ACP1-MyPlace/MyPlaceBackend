@@ -52,15 +52,15 @@ public class AccommodationEntity {
     private final Integer bathroomCount;
 
     @Column @NotNull
-    private final Boolean garage;
+    private final boolean garageAvailable;
 
     @Column @NotNull
-    private final Boolean petsAvailable;
+    private final boolean petsAvailable;
 
     @NotNull
     private final String priceCurrencyId;
 
     @NotNull
-    private final String priceAmount;
+    private final Long priceAmount;
 
 }
