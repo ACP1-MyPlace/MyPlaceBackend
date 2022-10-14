@@ -1,5 +1,6 @@
 package com.acp1.myplace.model;
 
+import com.acp1.myplace.domain.AccommodationService;
 import com.acp1.myplace.domain.PropertyType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
