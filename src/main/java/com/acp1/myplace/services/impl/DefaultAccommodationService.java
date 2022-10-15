@@ -1,5 +1,6 @@
 package com.acp1.myplace.services.impl;
 
+import com.acp1.myplace.domain.CurrencyType;
 import com.acp1.myplace.dto.AccommodationRequest;
 import com.acp1.myplace.dto.AccommodationResponse;
 import com.acp1.myplace.entities.AccommodationEntity;
@@ -97,11 +98,10 @@ public class DefaultAccommodationService implements AccommodationService {
                 .bathroomCount(accommodationEntity.getBathroomCount())
                 .garageAvailable(accommodationEntity.isGarageAvailable())
                 .petsAvailable(accommodationEntity.isPetsAvailable())
+                .services(accommodationEntity.getServices())
                 .price(Price.builder()
                         .amount(accommodationEntity.getPriceAmount())
-                        .currency(Currency.builder()
-                                .currencyId(accommodationEntity.getPriceCurrencyId())
-                                .build())
+                        .currency(CurrencyType.fromCurrencyId(accommodationEntity.getPriceCurrencyId()).getCurrency())
                         .build())
                 .build();
     }
