@@ -40,6 +40,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User getUserById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new UserNotFoundException());
+    }
+
+    @Override
     public User getUserByMail(String email) {
         return repository.findByEmail(email).orElseThrow(() -> new UserNotFoundException());
     }

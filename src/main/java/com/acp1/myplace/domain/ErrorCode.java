@@ -4,6 +4,7 @@ public enum ErrorCode {
     
     VALIDATION_ERROR(-1), 
     REGISTER_ERROR(-2),
+    USER_NOT_HOST(-100),
     NOT_FOUND(404);
 
     private int codeId;

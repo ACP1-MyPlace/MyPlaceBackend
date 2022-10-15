@@ -11,6 +11,7 @@ public class AccommodationConverter implements Converter<Accommodation, Accommod
     public AccommodationResponse apply(Accommodation accommodation) {
         return AccommodationResponse.builder()
                 .id(accommodation.getId())
+                .userId(accommodation.getUserId())
                 .propertyType(accommodation.getPropertyType())
                 .country(accommodation.getCountry())
                 .state(accommodation.getState())

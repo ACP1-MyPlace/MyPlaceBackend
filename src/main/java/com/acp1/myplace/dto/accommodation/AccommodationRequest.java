@@ -18,6 +18,8 @@ import java.util.List;
 @Builder
 public class AccommodationRequest {
 
+    @NotNull private Long userId;
+
     @NotNull private PropertyType propertyType;
 
     @NotBlank private String country;

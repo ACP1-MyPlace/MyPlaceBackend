@@ -5,6 +5,7 @@ import com.acp1.myplace.domain.accommodation.CurrencyType;
 import com.acp1.myplace.entities.AccommodationEntity;
 import com.acp1.myplace.model.accommodation.Accommodation;
 import com.acp1.myplace.model.accommodation.Price;
+import com.acp1.myplace.model.user.User;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,6 +14,7 @@ public class AccommodationEntityConverter implements Converter<AccommodationEnti
     public Accommodation apply(AccommodationEntity accommodationEntity) {
         return Accommodation.builder()
                 .id(accommodationEntity.getId())
+                .userId(accommodationEntity.getUser().getUserId())
                 .propertyType(accommodationEntity.getPropertyType())
                 .country(accommodationEntity.getCountry())
                 .state(accommodationEntity.getState())
@@ -35,6 +37,7 @@ public class AccommodationEntityConverter implements Converter<AccommodationEnti
     @Override
     public AccommodationEntity revert(Accommodation accommodation) {
         return AccommodationEntity.builder().propertyType(accommodation.getPropertyType())
+                .user(User.builder().build())
                 .country(accommodation.getCountry())
                 .state(accommodation.getState())
                 .street(accommodation.getStreet())

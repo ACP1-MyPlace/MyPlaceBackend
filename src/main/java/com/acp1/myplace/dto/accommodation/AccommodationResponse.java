@@ -22,6 +22,9 @@ public class AccommodationResponse {
     private Long id;
 
     @NotNull
+    private Long userId;
+
+    @NotNull
     private PropertyType propertyType;
 
     @NotBlank

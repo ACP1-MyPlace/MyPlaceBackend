@@ -8,6 +8,8 @@ public interface UserService {
     
     void registerNewUser(UserRegister user);
 
+    User getUserById(Long id);
+
     User getUserByMail(String email);
 
     User validateUsernameAndPassword(UsernamePasswordLogin userAndPassword);

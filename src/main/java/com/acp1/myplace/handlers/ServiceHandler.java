@@ -1,5 +1,6 @@
 package com.acp1.myplace.handlers;
 
+import com.acp1.myplace.exceptions.UserNotHostException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,6 +26,13 @@ public class ServiceHandler {
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     ErrorResponse handleServiceException(UserNotFoundException ex) {
+        return new ErrorResponse(ex.getCode(), ex.getMessage());
+    }
+
+    @ResponseBody
+    @ExceptionHandler(UserNotHostException.class)
+    @ResponseStatus(HttpStatus.PRECONDITION_FAILED)
+    ErrorResponse handleServiceException(UserNotHostException ex) {
         return new ErrorResponse(ex.getCode(), ex.getMessage());
     }
 }

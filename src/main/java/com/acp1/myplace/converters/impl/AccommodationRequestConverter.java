@@ -11,7 +11,9 @@ public class AccommodationRequestConverter implements Converter<AccommodationReq
     private static final Long NEW_ACCOMMODATION_ID = 0L;
     @Override
     public Accommodation apply(AccommodationRequest accommodationRequest) {
-        return Accommodation.builder().id(NEW_ACCOMMODATION_ID)
+        return Accommodation.builder()
+                .id(NEW_ACCOMMODATION_ID)
+                .userId(accommodationRequest.getUserId())
                 .propertyType(accommodationRequest.getPropertyType())
                 .country(accommodationRequest.getCountry())
                 .state(accommodationRequest.getState())
