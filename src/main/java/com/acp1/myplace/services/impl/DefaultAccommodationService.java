@@ -79,6 +79,7 @@ public class DefaultAccommodationService implements AccommodationService {
                 .bathroomCount(accommodation.getBathroomCount())
                 .garageAvailable(accommodation.isGarageAvailable())
                 .petsAvailable(accommodation.isPetsAvailable())
+                .services(accommodation.getServices())
                 .priceCurrencyId(accommodation.getPrice().getCurrency().getCurrencyId())
                 .priceAmount(accommodation.getPrice().getAmount())
                 .build();

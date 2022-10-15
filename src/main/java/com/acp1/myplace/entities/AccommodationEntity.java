@@ -6,17 +6,22 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -71,14 +76,11 @@ public class AccommodationEntity {
     private Long priceAmount;
 
     @ElementCollection
-    @CollectionTable(
-            name = "accommodation_services",//table name to join on
-            joinColumns = @JoinColumn(
-                    name = "accommodation_id",
-                    referencedColumnName = "id"
-            )
+    @CollectionTable(name = "accommodation_services",
+                     joinColumns = @JoinColumn(name = "accommodation_id",referencedColumnName = "id")
     )
-    @Column(name = "service")
-    List<AccommodationService> services;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "service", nullable = false)
+    List<AccommodationService> services = new ArrayList<>();
 
 }
