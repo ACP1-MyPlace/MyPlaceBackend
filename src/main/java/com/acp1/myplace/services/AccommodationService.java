@@ -1,18 +1,18 @@
 package com.acp1.myplace.services;
 
-import com.acp1.myplace.dto.AccommodationDTO;
-import com.acp1.myplace.model.Accommodation;
+import com.acp1.myplace.dto.AccommodationRequest;
+import com.acp1.myplace.dto.AccommodationResponse;
 
 import java.util.List;
 
 public interface AccommodationService {
 
-    Accommodation createAccommodation(AccommodationDTO newAccommodation);
+    AccommodationResponse createAccommodation(AccommodationRequest newAccommodation);
 
-    List<Accommodation> getAccommodations();
+    List<AccommodationResponse> getAccommodations();
 
-    Accommodation getAccommodation(Long accommodationId);
+    AccommodationResponse getAccommodation(Long accommodationId);
 
-    Accommodation updateAccommodation(Long accommodationId, AccommodationDTO update);
+    AccommodationResponse updateAccommodation(Long accommodationId, AccommodationRequest update);
 
 }

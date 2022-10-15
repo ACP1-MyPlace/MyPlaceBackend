@@ -5,22 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
-@Entity
 @Getter
 @Builder
 @AllArgsConstructor
-@Table(name = "accommodation_service")
+@Embeddable
 public class AccommodationServiceEntity {
 
-    @Column
-    @NotNull
-    private Long accommodationId;
-
-    @Column @NotNull
+    @Enumerated(EnumType.ORDINAL)
     private AccommodationService service;
 }

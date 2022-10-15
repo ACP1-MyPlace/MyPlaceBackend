@@ -1,17 +1,21 @@
 package com.acp1.myplace.services.impl;
 
-import com.acp1.myplace.dto.AccommodationDTO;
+import com.acp1.myplace.dto.AccommodationRequest;
+import com.acp1.myplace.dto.AccommodationResponse;
 import com.acp1.myplace.entities.AccommodationEntity;
 import com.acp1.myplace.entities.AccommodationServiceEntity;
 import com.acp1.myplace.model.Accommodation;
 import com.acp1.myplace.repositories.AccommodationRepository;
-import com.acp1.myplace.repositories.AccommodationServiceRepository;
 import com.acp1.myplace.services.AccommodationService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
+@Slf4j
 public class DefaultAccommodationService implements AccommodationService {
 
     private static final Long NEW_ACCOMMODATION_ID = 0L;
@@ -19,49 +23,45 @@ public class DefaultAccommodationService implements AccommodationService {
     @Autowired
     private AccommodationRepository accommodationRepository;
 
-    @Autowired
-    private AccommodationServiceRepository accommodationServiceRepository;
-
     @Override
-    public Accommodation createAccommodation(AccommodationDTO newAccommodation) {
-        Accommodation accommodation = this.dtoToModel(newAccommodation);
+    public AccommodationResponse createAccommodation(AccommodationRequest newAccommodation) {
+        Accommodation accommodation = this.requestToModel(newAccommodation);
         AccommodationEntity accommodationEntity = this.modelToEntity(accommodation);
-        accommodationRepository.save(accommodationEntity);
-        List<AccommodationServiceEntity> accommodationServiceEntities = this.modelToServiceEntities(accommodation);
-        accommodationServiceRepository.saveAll(accommodationServiceEntities);
-        return accommodation;
+        AccommodationEntity created = accommodationRepository.save(accommodationEntity);
+        accommodation.setId(created.getId());
+        return this.responseToModel(accommodation);
     }
 
     @Override
-    public List<Accommodation> getAccommodations() {
+    public List<AccommodationResponse> getAccommodations() {
         return null;
     }
 
     @Override
-    public Accommodation getAccommodation(Long accommodationId) {
+    public AccommodationResponse getAccommodation(Long accommodationId) {
         return null;
     }
 
     @Override
-    public Accommodation updateAccommodation(Long accommodationId, AccommodationDTO update) {
+    public AccommodationResponse updateAccommodation(Long accommodationId, AccommodationRequest update) {
         return null;
     }
 
-    private Accommodation dtoToModel(AccommodationDTO accommodationDTO) {
+    private Accommodation requestToModel(AccommodationRequest accommodationRequest) {
         return Accommodation.builder().id(NEW_ACCOMMODATION_ID)
-                .propertyType(accommodationDTO.getPropertyType())
-                .country(accommodationDTO.getCountry())
-                .state(accommodationDTO.getState())
-                .street(accommodationDTO.getStreet())
-                .streetNumber(accommodationDTO.getStreetNumber())
-                .floor(accommodationDTO.getFloor())
-                .apartment(accommodationDTO.getApartment())
-                .roomsCount(accommodationDTO.getRoomsCount())
-                .bathroomCount(accommodationDTO.getBathroomCount())
-                .garage(accommodationDTO.isGarageAvailable())
-                .petsAvailable(accommodationDTO.isPetsAvailable())
-                .services(accommodationDTO.getServices())
-                .price(accommodationDTO.getPrice()).build();
+                .propertyType(accommodationRequest.getPropertyType())
+                .country(accommodationRequest.getCountry())
+                .state(accommodationRequest.getState())
+                .street(accommodationRequest.getStreet())
+                .streetNumber(accommodationRequest.getStreetNumber())
+                .floor(accommodationRequest.getFloor())
+                .apartment(accommodationRequest.getApartment())
+                .roomsCount(accommodationRequest.getRoomsCount())
+                .bathroomCount(accommodationRequest.getBathroomCount())
+                .garage(accommodationRequest.isGarageAvailable())
+                .petsAvailable(accommodationRequest.isPetsAvailable())
+                .services(accommodationRequest.getServices())
+                .price(accommodationRequest.getPrice()).build();
     }
 
     private AccommodationEntity modelToEntity(Accommodation accommodation) {
@@ -81,10 +81,22 @@ public class DefaultAccommodationService implements AccommodationService {
                 .build();
     }
 
-    private List<AccommodationServiceEntity> modelToServiceEntities(Accommodation accommodation) {
-        Long accommodationId = accommodation.getId();
+    private List<AccommodationServiceEntity> modelToServiceEntities(Accommodation accommodation, AccommodationEntity accommodationEntity) {
         return accommodation.getServices().stream()
-                .map(service -> AccommodationServiceEntity.builder().accommodationId(accommodationId).service(service).build())
+                .map(service -> AccommodationServiceEntity.builder().build())
                 .collect(Collectors.toList());
+    }
+
+    private AccommodationResponse responseToModel(Accommodation accommodation) {
+        return AccommodationResponse.builder().id(accommodation.getId())
+                .country(accommodation.getCountry())
+                .state(accommodation.getState())
+                .street(accommodation.getStreet())
+                .streetNumber(accommodation.getStreetNumber())
+                .floor(accommodation.getFloor())
+                .apartment(accommodation.getApartment())
+                .roomsCount(accommodation.getRoomsCount())
+                .bathroomCount(accommodation.getBathroomCount())
+                .garageAvailable(accommodation.isGarage()).build();
     }
 }

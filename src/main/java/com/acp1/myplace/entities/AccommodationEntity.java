@@ -1,22 +1,27 @@
 package com.acp1.myplace.entities;
 
+import com.acp1.myplace.domain.AccommodationService;
 import com.acp1.myplace.domain.PropertyType;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
-@Entity
 @Getter
 @Builder
-@RequiredArgsConstructor
+@AllArgsConstructor
+@Entity
 @Table(name = "accommodations")
 public class AccommodationEntity {
 
@@ -62,5 +67,16 @@ public class AccommodationEntity {
 
     @NotNull
     private final Long priceAmount;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "accommodation_services",//table name to join on
+            joinColumns = @JoinColumn(
+                    name = "accommodation_id",
+                    referencedColumnName = "id"
+            )
+    )
+    @Column(name = "service")
+    List<AccommodationService> services;
 
 }
