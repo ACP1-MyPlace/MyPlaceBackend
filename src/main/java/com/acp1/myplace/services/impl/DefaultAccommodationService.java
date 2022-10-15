@@ -89,6 +89,7 @@ public class DefaultAccommodationService implements AccommodationService {
 
     private AccommodationResponse responseToModel(Accommodation accommodation) {
         return AccommodationResponse.builder().id(accommodation.getId())
+                .propertyType(accommodation.getPropertyType())
                 .country(accommodation.getCountry())
                 .state(accommodation.getState())
                 .street(accommodation.getStreet())
@@ -97,6 +98,9 @@ public class DefaultAccommodationService implements AccommodationService {
                 .apartment(accommodation.getApartment())
                 .roomsCount(accommodation.getRoomsCount())
                 .bathroomCount(accommodation.getBathroomCount())
-                .garageAvailable(accommodation.isGarage()).build();
+                .garageAvailable(accommodation.isGarage())
+                .services(accommodation.getServices())
+                .price(accommodation.getPrice())
+                .build();
     }
 }
