@@ -3,8 +3,9 @@ package com.acp1.myplace.services.impl;
 import com.acp1.myplace.dto.AccommodationRequest;
 import com.acp1.myplace.dto.AccommodationResponse;
 import com.acp1.myplace.entities.AccommodationEntity;
-import com.acp1.myplace.entities.AccommodationServiceEntity;
 import com.acp1.myplace.model.Accommodation;
+import com.acp1.myplace.model.Currency;
+import com.acp1.myplace.model.Price;
 import com.acp1.myplace.repositories.AccommodationRepository;
 import com.acp1.myplace.services.AccommodationService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,12 +30,13 @@ public class DefaultAccommodationService implements AccommodationService {
         AccommodationEntity accommodationEntity = this.modelToEntity(accommodation);
         AccommodationEntity created = accommodationRepository.save(accommodationEntity);
         accommodation.setId(created.getId());
-        return this.responseToModel(accommodation);
+        return this.modelToResponse(accommodation);
     }
 
     @Override
     public List<AccommodationResponse> getAccommodations() {
-        return null;
+        List<Accommodation> model = this.entityToModel(this.accommodationRepository.findAll());
+        return this.modelToResponse(model);
     }
 
     @Override
@@ -58,7 +60,7 @@ public class DefaultAccommodationService implements AccommodationService {
                 .apartment(accommodationRequest.getApartment())
                 .roomsCount(accommodationRequest.getRoomsCount())
                 .bathroomCount(accommodationRequest.getBathroomCount())
-                .garage(accommodationRequest.isGarageAvailable())
+                .garageAvailable(accommodationRequest.isGarageAvailable())
                 .petsAvailable(accommodationRequest.isPetsAvailable())
                 .services(accommodationRequest.getServices())
                 .price(accommodationRequest.getPrice()).build();
@@ -74,21 +76,43 @@ public class DefaultAccommodationService implements AccommodationService {
                 .apartment(accommodation.getApartment())
                 .roomsCount(accommodation.getRoomsCount())
                 .bathroomCount(accommodation.getBathroomCount())
-                .garageAvailable(accommodation.isGarage())
+                .garageAvailable(accommodation.isGarageAvailable())
                 .petsAvailable(accommodation.isPetsAvailable())
                 .priceCurrencyId(accommodation.getPrice().getCurrency().getCurrencyId())
                 .priceAmount(accommodation.getPrice().getAmount())
                 .build();
     }
 
-    private List<AccommodationServiceEntity> modelToServiceEntities(Accommodation accommodation, AccommodationEntity accommodationEntity) {
-        return accommodation.getServices().stream()
-                .map(service -> AccommodationServiceEntity.builder().build())
-                .collect(Collectors.toList());
+    private Accommodation entityToModel(AccommodationEntity accommodationEntity) {
+        return Accommodation.builder()
+                .id(accommodationEntity.getId())
+                .propertyType(accommodationEntity.getPropertyType())
+                .country(accommodationEntity.getCountry())
+                .state(accommodationEntity.getState())
+                .street(accommodationEntity.getStreet())
+                .streetNumber(accommodationEntity.getStreetNumber())
+                .floor(accommodationEntity.getFloor())
+                .apartment(accommodationEntity.getApartment())
+                .roomsCount(accommodationEntity.getRoomsCount())
+                .bathroomCount(accommodationEntity.getBathroomCount())
+                .garageAvailable(accommodationEntity.isGarageAvailable())
+                .petsAvailable(accommodationEntity.isPetsAvailable())
+                .price(Price.builder()
+                        .amount(accommodationEntity.getPriceAmount())
+                        .currency(Currency.builder()
+                                .currencyId(accommodationEntity.getPriceCurrencyId())
+                                .build())
+                        .build())
+                .build();
     }
 
-    private AccommodationResponse responseToModel(Accommodation accommodation) {
-        return AccommodationResponse.builder().id(accommodation.getId())
+    private List<Accommodation> entityToModel(List<AccommodationEntity> accommodationEntities) {
+        return accommodationEntities.stream().map(this::entityToModel).collect(Collectors.toList());
+    }
+
+    private AccommodationResponse modelToResponse(Accommodation accommodation) {
+        return AccommodationResponse.builder()
+                .id(accommodation.getId())
                 .propertyType(accommodation.getPropertyType())
                 .country(accommodation.getCountry())
                 .state(accommodation.getState())
@@ -98,9 +122,15 @@ public class DefaultAccommodationService implements AccommodationService {
                 .apartment(accommodation.getApartment())
                 .roomsCount(accommodation.getRoomsCount())
                 .bathroomCount(accommodation.getBathroomCount())
-                .garageAvailable(accommodation.isGarage())
+                .garageAvailable(accommodation.isGarageAvailable())
                 .services(accommodation.getServices())
                 .price(accommodation.getPrice())
                 .build();
     }
+
+    private List<AccommodationResponse> modelToResponse(List<Accommodation> accommodation) {
+        return accommodation.stream().map(this::modelToResponse).collect(Collectors.toList());
+    }
+
+
 }

@@ -45,7 +45,7 @@ public class Accommodation {
     private Integer bathroomCount;
 
     @NotNull
-    private boolean garage;
+    private boolean garageAvailable;
 
     @NotNull
     private boolean petsAvailable;

@@ -5,6 +5,7 @@ import com.acp1.myplace.domain.PropertyType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -20,8 +21,9 @@ import java.util.List;
 
 @Getter
 @Builder
-@AllArgsConstructor
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "accommodations")
 public class AccommodationEntity {
 
@@ -30,19 +32,19 @@ public class AccommodationEntity {
     private Long id;
 
     @Column @NotNull
-    private final PropertyType propertyType;
+    private PropertyType propertyType;
 
     @Column @NotNull
-    private final String country;
+    private String country;
 
     @Column @NotNull
-    private final String state;
+    private String state;
 
     @Column @NotNull
-    private final String street;
+    private String street;
 
     @Column @NotNull
-    private final Integer streetNumber;
+    private Integer streetNumber;
 
     @Column
     private String floor;
@@ -51,22 +53,22 @@ public class AccommodationEntity {
     private String apartment;
 
     @Column @NotNull
-    private final Integer roomsCount;
+    private Integer roomsCount;
 
     @Column @NotNull
-    private final Integer bathroomCount;
+    private Integer bathroomCount;
 
     @Column @NotNull
-    private final boolean garageAvailable;
+    private boolean garageAvailable;
 
     @Column @NotNull
-    private final boolean petsAvailable;
+    private boolean petsAvailable;
 
     @NotNull
-    private final String priceCurrencyId;
+    private String priceCurrencyId;
 
     @NotNull
-    private final Long priceAmount;
+    private Long priceAmount;
 
     @ElementCollection
     @CollectionTable(
