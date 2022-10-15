@@ -1,7 +1,7 @@
 package com.acp1.myplace.controllers;
 
 import com.acp1.myplace.dto.JwtResponse;
-import com.acp1.myplace.dto.UsernamePasswordLogin;
+import com.acp1.myplace.dto.user.UsernamePasswordLogin;
 import com.acp1.myplace.services.JwtManager;
 import com.acp1.myplace.services.UserService;
 

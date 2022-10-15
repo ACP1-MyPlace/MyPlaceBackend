@@ -1,7 +1,6 @@
-package com.acp1.myplace.model;
+package com.acp1.myplace.model.user;
 
-import com.acp1.myplace.domain.UserType;
-import lombok.AllArgsConstructor;
+import com.acp1.myplace.domain.user.UserType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

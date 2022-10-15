@@ -2,7 +2,7 @@ package com.acp1.myplace.services;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.acp1.myplace.domain.UserType;
+import com.acp1.myplace.domain.user.UserType;
 import com.acp1.myplace.dto.JwtResponse;
 
 public interface JwtManager {

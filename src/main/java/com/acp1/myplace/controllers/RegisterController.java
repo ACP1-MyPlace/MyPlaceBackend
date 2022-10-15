@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acp1.myplace.dto.JwtResponse;
-import com.acp1.myplace.dto.UserRegister;
+import com.acp1.myplace.dto.user.UserRegister;
 import com.acp1.myplace.services.JwtManager;
 import com.acp1.myplace.services.UserService;
 

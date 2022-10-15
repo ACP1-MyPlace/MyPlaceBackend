@@ -1,6 +1,6 @@
-package com.acp1.myplace.domain;
+package com.acp1.myplace.domain.accommodation;
 
-import com.acp1.myplace.model.Currency;
+import com.acp1.myplace.model.accommodation.Currency;
 
 public enum CurrencyType {
 

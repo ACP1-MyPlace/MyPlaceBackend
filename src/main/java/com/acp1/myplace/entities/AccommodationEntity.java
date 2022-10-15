@@ -1,7 +1,7 @@
 package com.acp1.myplace.entities;
 
-import com.acp1.myplace.domain.AccommodationService;
-import com.acp1.myplace.domain.PropertyType;
+import com.acp1.myplace.domain.accommodation.AccommodationService;
+import com.acp1.myplace.domain.accommodation.PropertyType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

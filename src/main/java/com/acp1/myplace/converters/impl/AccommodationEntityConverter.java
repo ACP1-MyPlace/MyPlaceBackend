@@ -1,10 +1,10 @@
 package com.acp1.myplace.converters.impl;
 
 import com.acp1.myplace.converters.Converter;
-import com.acp1.myplace.domain.CurrencyType;
+import com.acp1.myplace.domain.accommodation.CurrencyType;
 import com.acp1.myplace.entities.AccommodationEntity;
-import com.acp1.myplace.model.Accommodation;
-import com.acp1.myplace.model.Price;
+import com.acp1.myplace.model.accommodation.Accommodation;
+import com.acp1.myplace.model.accommodation.Price;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,8 +1,8 @@
 package com.acp1.myplace.converters.impl;
 
 import com.acp1.myplace.converters.Converter;
-import com.acp1.myplace.dto.AccommodationResponse;
-import com.acp1.myplace.model.Accommodation;
+import com.acp1.myplace.dto.accommodation.AccommodationResponse;
+import com.acp1.myplace.model.accommodation.Accommodation;
 import org.springframework.stereotype.Component;
 
 @Component
