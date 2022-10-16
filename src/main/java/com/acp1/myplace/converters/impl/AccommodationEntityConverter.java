@@ -14,7 +14,7 @@ public class AccommodationEntityConverter implements Converter<AccommodationEnti
     public Accommodation apply(AccommodationEntity accommodationEntity) {
         return Accommodation.builder()
                 .id(accommodationEntity.getId())
-                .userId(accommodationEntity.getUser().getUserId())
+                .user(accommodationEntity.getUser())
                 .propertyType(accommodationEntity.getPropertyType())
                 .country(accommodationEntity.getCountry())
                 .state(accommodationEntity.getState())
@@ -31,13 +31,14 @@ public class AccommodationEntityConverter implements Converter<AccommodationEnti
                         .amount(accommodationEntity.getPriceAmount())
                         .currency(CurrencyType.fromCurrencyId(accommodationEntity.getPriceCurrencyId()).getCurrency())
                         .build())
+                .description(accommodationEntity.getDescription())
                 .build();
     }
 
     @Override
     public AccommodationEntity revert(Accommodation accommodation) {
         return AccommodationEntity.builder().propertyType(accommodation.getPropertyType())
-                .user(User.builder().build())
+                .user(accommodation.getUser())
                 .country(accommodation.getCountry())
                 .state(accommodation.getState())
                 .street(accommodation.getStreet())
@@ -51,6 +52,7 @@ public class AccommodationEntityConverter implements Converter<AccommodationEnti
                 .services(accommodation.getServices())
                 .priceCurrencyId(accommodation.getPrice().getCurrency().getCurrencyId())
                 .priceAmount(accommodation.getPrice().getAmount())
+                .description(accommodation.getDescription())
                 .build();
     }
 }

@@ -2,6 +2,7 @@ package com.acp1.myplace.model.accommodation;
 
 import com.acp1.myplace.domain.accommodation.AccommodationService;
 import com.acp1.myplace.domain.accommodation.PropertyType;
+import com.acp1.myplace.model.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,7 +21,7 @@ public class Accommodation {
     private Long id;
 
     @NotNull
-    private Long userId;
+    private User user;
 
     @NotNull
     private PropertyType propertyType;
@@ -58,5 +59,7 @@ public class Accommodation {
 
     @NotNull
     private Price price;
+
+    private String description;
 
 }

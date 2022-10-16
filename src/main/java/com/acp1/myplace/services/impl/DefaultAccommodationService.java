@@ -41,7 +41,7 @@ public class DefaultAccommodationService implements AccommodationService {
     @Override
     public AccommodationResponse createAccommodation(AccommodationRequest newAccommodation) {
         Accommodation accommodation = this.accommodationRequestConverter.apply(newAccommodation);
-        User user = this.userService.getUserById(accommodation.getUserId());
+        User user = this.userService.getUserById(accommodation.getUser().getUserId());
         AccommodationEntity accommodationEntity = this.accommodationEntityConverter.revert(accommodation);
         if (!UserType.HOST_USER.equals(user.getType())){
             throw new UserNotHostException();

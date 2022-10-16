@@ -75,10 +75,10 @@ public class AccommodationEntity {
     @Column @NotNull
     private boolean petsAvailable;
 
-    @NotNull
+    @Column @NotNull
     private String priceCurrencyId;
 
-    @NotNull
+    @Column @NotNull
     private Long priceAmount;
 
     @ElementCollection
@@ -87,6 +87,9 @@ public class AccommodationEntity {
     )
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "service", nullable = false)
-    List<AccommodationService> services = new ArrayList<>();
+    private List<AccommodationService> services = new ArrayList<>();
+
+    @Column
+    private String description;
 
 }

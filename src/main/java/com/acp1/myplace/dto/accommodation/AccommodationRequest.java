@@ -45,4 +45,6 @@ public class AccommodationRequest {
     @NotNull private List<AccommodationService> services;
 
     @NotNull private Price price;
+
+    private String description;
 }
