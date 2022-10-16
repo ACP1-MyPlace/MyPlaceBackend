@@ -13,6 +13,7 @@ public class AccommodationConverter implements Converter<Accommodation, Accommod
         return AccommodationResponse.builder()
                 .id(accommodation.getId())
                 .host(UserResponse.builder()
+                        .id(accommodation.getId())
                         .mail(accommodation.getUser().getEmail())
                         .firstName(accommodation.getUser().getFirstName())
                         .lastName(accommodation.getUser().getLastName())

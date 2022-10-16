@@ -5,7 +5,6 @@ import com.acp1.myplace.domain.accommodation.CurrencyType;
 import com.acp1.myplace.entities.AccommodationEntity;
 import com.acp1.myplace.model.accommodation.Accommodation;
 import com.acp1.myplace.model.accommodation.Price;
-import com.acp1.myplace.model.user.User;
 import org.springframework.stereotype.Component;
 
 @Component
