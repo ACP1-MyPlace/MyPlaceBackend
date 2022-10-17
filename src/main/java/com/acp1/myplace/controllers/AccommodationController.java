@@ -20,12 +20,12 @@ public class AccommodationController {
     private AccommodationService accommodationService;
 
     @PostMapping("")
-    public AccommodationResponse addAccommodation(@RequestBody @Valid AccommodationRequest requestDTO) {
+    public AccommodationResponse getAccommodations(@RequestBody @Valid AccommodationRequest requestDTO) {
         return this.accommodationService.createAccommodation(requestDTO);
     }
 
     @GetMapping("")
-    public List<AccommodationResponse> addAccommodation() {
+    public List<AccommodationResponse> getAccommodations() {
         return this.accommodationService.getAccommodations();
     }
 }
