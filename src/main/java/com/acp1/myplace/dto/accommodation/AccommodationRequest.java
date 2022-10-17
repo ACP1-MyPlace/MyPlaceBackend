@@ -1,8 +1,8 @@
-package com.acp1.myplace.dto;
+package com.acp1.myplace.dto.accommodation;
 
-import com.acp1.myplace.domain.AccommodationService;
-import com.acp1.myplace.domain.PropertyType;
-import com.acp1.myplace.model.Price;
+import com.acp1.myplace.domain.accommodation.AccommodationService;
+import com.acp1.myplace.domain.accommodation.PropertyType;
+import com.acp1.myplace.model.accommodation.Price;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,6 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class AccommodationRequest {
+
+    @NotNull private Long userId;
 
     @NotNull private PropertyType propertyType;
 
@@ -43,4 +45,6 @@ public class AccommodationRequest {
     @NotNull private List<AccommodationService> services;
 
     @NotNull private Price price;
+
+    private String description;
 }

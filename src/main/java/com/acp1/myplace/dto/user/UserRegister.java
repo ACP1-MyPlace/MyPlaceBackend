@@ -1,11 +1,11 @@
-package com.acp1.myplace.dto;
+package com.acp1.myplace.dto.user;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.acp1.myplace.domain.UserType;
+import com.acp1.myplace.domain.user.UserType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

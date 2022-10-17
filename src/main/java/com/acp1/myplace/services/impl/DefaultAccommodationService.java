@@ -3,12 +3,16 @@ package com.acp1.myplace.services.impl;
 import com.acp1.myplace.converters.impl.AccommodationEntityConverter;
 import com.acp1.myplace.converters.impl.AccommodationRequestConverter;
 import com.acp1.myplace.converters.impl.AccommodationConverter;
-import com.acp1.myplace.dto.AccommodationRequest;
-import com.acp1.myplace.dto.AccommodationResponse;
+import com.acp1.myplace.domain.user.UserType;
+import com.acp1.myplace.dto.accommodation.AccommodationRequest;
+import com.acp1.myplace.dto.accommodation.AccommodationResponse;
 import com.acp1.myplace.entities.AccommodationEntity;
-import com.acp1.myplace.model.Accommodation;
+import com.acp1.myplace.exceptions.UserNotHostException;
+import com.acp1.myplace.model.accommodation.Accommodation;
+import com.acp1.myplace.model.user.User;
 import com.acp1.myplace.repositories.AccommodationRepository;
 import com.acp1.myplace.services.AccommodationService;
+import com.acp1.myplace.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,15 +33,23 @@ public class DefaultAccommodationService implements AccommodationService {
     private AccommodationConverter accommodationConverter;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private AccommodationRepository accommodationRepository;
 
     @Override
     public AccommodationResponse createAccommodation(AccommodationRequest newAccommodation) {
         Accommodation accommodation = this.accommodationRequestConverter.apply(newAccommodation);
+        User user = this.userService.getUserById(accommodation.getUser().getUserId());
         AccommodationEntity accommodationEntity = this.accommodationEntityConverter.revert(accommodation);
-        AccommodationEntity created = accommodationRepository.save(accommodationEntity);
-        accommodation.setId(created.getId());
-        return this.accommodationConverter.apply(accommodation);
+        if (!UserType.HOST_USER.equals(user.getType())){
+            throw new UserNotHostException();
+        }
+        accommodationEntity.setUser(user);
+        AccommodationEntity created = this.accommodationRepository.save(accommodationEntity);
+        Accommodation accommodationCreated = this.accommodationEntityConverter.apply(created);
+        return this.accommodationConverter.apply(accommodationCreated);
     }
 
     @Override

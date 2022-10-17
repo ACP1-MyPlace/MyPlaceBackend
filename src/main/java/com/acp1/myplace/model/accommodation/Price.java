@@ -1,4 +1,4 @@
-package com.acp1.myplace.model;
+package com.acp1.myplace.model.accommodation;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.acp1.myplace.dto;
+package com.acp1.myplace.dto.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

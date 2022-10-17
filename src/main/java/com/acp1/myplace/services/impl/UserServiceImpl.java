@@ -2,11 +2,11 @@ package com.acp1.myplace.services.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.acp1.myplace.dto.UserRegister;
-import com.acp1.myplace.dto.UsernamePasswordLogin;
+import com.acp1.myplace.dto.user.UserRegister;
+import com.acp1.myplace.dto.user.UsernamePasswordLogin;
 import com.acp1.myplace.exceptions.UserAlreadyRegistered;
 import com.acp1.myplace.exceptions.UserNotFoundException;
-import com.acp1.myplace.model.User;
+import com.acp1.myplace.model.user.User;
 import com.acp1.myplace.repositories.UserRepository;
 import com.acp1.myplace.services.UserService;
 
@@ -37,6 +37,11 @@ public class UserServiceImpl implements UserService{
             .type(dto.getType())
             .build();
         repository.save(user);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new UserNotFoundException());
     }
 
     @Override

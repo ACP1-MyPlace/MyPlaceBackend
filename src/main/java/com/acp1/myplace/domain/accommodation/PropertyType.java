@@ -1,4 +1,4 @@
-package com.acp1.myplace.domain;
+package com.acp1.myplace.domain.accommodation;
 
 public enum PropertyType {
 

@@ -1,7 +1,7 @@
 package com.acp1.myplace.controllers;
 
-import com.acp1.myplace.dto.AccommodationRequest;
-import com.acp1.myplace.dto.AccommodationResponse;
+import com.acp1.myplace.dto.accommodation.AccommodationRequest;
+import com.acp1.myplace.dto.accommodation.AccommodationResponse;
 import com.acp1.myplace.services.AccommodationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

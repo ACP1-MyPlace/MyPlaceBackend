@@ -1,8 +1,9 @@
-package com.acp1.myplace.dto;
+package com.acp1.myplace.dto.accommodation;
 
-import com.acp1.myplace.domain.AccommodationService;
-import com.acp1.myplace.domain.PropertyType;
-import com.acp1.myplace.model.Price;
+import com.acp1.myplace.domain.accommodation.AccommodationService;
+import com.acp1.myplace.domain.accommodation.PropertyType;
+import com.acp1.myplace.dto.user.UserResponse;
+import com.acp1.myplace.model.accommodation.Price;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +21,9 @@ public class AccommodationResponse {
 
     @NotNull
     private Long id;
+
+    @NotNull
+    private UserResponse host;
 
     @NotNull
     private PropertyType propertyType;
@@ -48,4 +52,6 @@ public class AccommodationResponse {
     @NotNull private List<AccommodationService> services;
 
     @NotNull private Price price;
+
+    private String description;
 }

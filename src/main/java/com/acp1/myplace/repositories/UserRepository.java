@@ -1,6 +1,6 @@
 package com.acp1.myplace.repositories;
 
-import com.acp1.myplace.model.User;
+import com.acp1.myplace.model.user.User;
 
 import java.util.Optional;
 

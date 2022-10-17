@@ -1,7 +1,8 @@
-package com.acp1.myplace.model;
+package com.acp1.myplace.model.accommodation;
 
-import com.acp1.myplace.domain.AccommodationService;
-import com.acp1.myplace.domain.PropertyType;
+import com.acp1.myplace.domain.accommodation.AccommodationService;
+import com.acp1.myplace.domain.accommodation.PropertyType;
+import com.acp1.myplace.model.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,6 +19,9 @@ public class Accommodation {
 
     @NotNull
     private Long id;
+
+    @NotNull
+    private User user;
 
     @NotNull
     private PropertyType propertyType;
@@ -55,5 +59,7 @@ public class Accommodation {
 
     @NotNull
     private Price price;
+
+    private String description;
 
 }

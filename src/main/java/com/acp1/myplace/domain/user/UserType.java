@@ -1,4 +1,4 @@
-package com.acp1.myplace.domain;
+package com.acp1.myplace.domain.user;
 
 public enum UserType {
     HOST_USER,
