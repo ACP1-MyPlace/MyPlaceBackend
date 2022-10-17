@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/accommodations")
@@ -25,7 +27,7 @@ public class AccommodationController {
     }
 
     @GetMapping("")
-    public List<AccommodationResponse> getAccommodations() {
-        return this.accommodationService.getAccommodations();
+    public List<AccommodationResponse> getAccommodations(@RequestParam Map<String, String> queryParams) {
+        return this.accommodationService.getAccommodations(queryParams);
     }
 }
