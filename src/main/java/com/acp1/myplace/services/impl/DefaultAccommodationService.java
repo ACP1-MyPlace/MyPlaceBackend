@@ -68,4 +68,8 @@ public class DefaultAccommodationService implements AccommodationService {
         return null;
     }
 
+    @Override
+    public void deleteAccomodationById(Long accommodationId) {
+        this.accommodationRepository.deleteById(accommodationId);
+    }
 }

@@ -15,4 +15,6 @@ public interface AccommodationService {
 
     AccommodationResponse updateAccommodation(Long accommodationId, AccommodationRequest update);
 
+    void deleteAccomodationById(Long accommodationId);
+
 }
