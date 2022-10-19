@@ -1,8 +1,8 @@
 package com.acp1.myplace.services.impl;
 
+import com.acp1.myplace.converters.impl.AccommodationConverter;
 import com.acp1.myplace.converters.impl.AccommodationEntityConverter;
 import com.acp1.myplace.converters.impl.AccommodationRequestConverter;
-import com.acp1.myplace.converters.impl.AccommodationConverter;
 import com.acp1.myplace.domain.user.UserType;
 import com.acp1.myplace.dto.accommodation.AccommodationRequest;
 import com.acp1.myplace.dto.accommodation.AccommodationResponse;
@@ -19,10 +19,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -59,7 +59,7 @@ public class DefaultAccommodationService implements AccommodationService {
     }
 
     @Override
-    public List<AccommodationResponse> getAccommodations(Map<String, String> queryParams) {
+    public List<AccommodationResponse> getAccommodations(Pageable queryParams) {
         Query query = QueryFactory.create(queryParams);
         Page<AccommodationEntity> results = this.accommodationRepository.findAll(PageRequest.of(query.getPage(), query.getPageSize()));
         List<Accommodation> model = this.accommodationEntityConverter.apply(results.get().collect(Collectors.toList()));
