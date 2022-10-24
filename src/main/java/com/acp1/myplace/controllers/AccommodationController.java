@@ -32,13 +32,13 @@ public class AccommodationController {
         return this.accommodationService.getAccommodations();
     }
 
-    @DeleteMapping("/accomodations/{id}")
+    @DeleteMapping("/{id}")
     public void deleteAccomodation(@PathVariable Long id) {
         this.accommodationService.deleteAccomodationById(id);
     }
 
-    @PutMapping("/accomodations/{id}")
-    public AccommodationResponse replaceEmployee(@RequestBody AccommodationRequest requestDTO, @PathVariable Long id) {
+    @PutMapping("/{id}")
+    public AccommodationResponse updateAccommodation(@RequestBody AccommodationRequest requestDTO, @PathVariable Long id) {
         return this.accommodationService.updateAccommodation(id, requestDTO);
     }
 }
