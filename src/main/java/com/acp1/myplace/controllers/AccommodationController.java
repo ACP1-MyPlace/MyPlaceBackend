@@ -6,6 +6,9 @@ import com.acp1.myplace.services.AccommodationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,5 +30,15 @@ public class AccommodationController {
     @GetMapping("")
     public List<AccommodationResponse> addAccommodation() {
         return this.accommodationService.getAccommodations();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteAccomodation(@PathVariable Long id) {
+        this.accommodationService.deleteAccomodationById(id);
+    }
+
+    @PutMapping("/{id}")
+    public AccommodationResponse updateAccommodation(@RequestBody AccommodationRequest requestDTO, @PathVariable Long id) {
+        return this.accommodationService.updateAccommodation(id, requestDTO);
     }
 }

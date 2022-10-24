@@ -65,7 +65,17 @@ public class DefaultAccommodationService implements AccommodationService {
 
     @Override
     public AccommodationResponse updateAccommodation(Long accommodationId, AccommodationRequest update) {
-        return null;
+
+        Accommodation accommodationUpdate = this.accommodationRequestConverter.apply(update);
+        AccommodationEntity accommodationEntityUpdate = this.accommodationEntityConverter.revert(accommodationUpdate);
+        accommodationEntityUpdate.setId(accommodationId);
+        AccommodationEntity updated = this.accommodationRepository.save(accommodationEntityUpdate);
+        Accommodation accommodationUpdated = this.accommodationEntityConverter.apply(updated);
+        return this.accommodationConverter.apply(accommodationUpdated);
     }
 
+    @Override
+    public void deleteAccomodationById(Long accommodationId) {
+        this.accommodationRepository.deleteById(accommodationId);
+    }
 }
