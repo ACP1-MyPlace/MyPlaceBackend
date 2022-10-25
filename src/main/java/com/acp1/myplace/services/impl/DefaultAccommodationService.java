@@ -78,4 +78,11 @@ public class DefaultAccommodationService implements AccommodationService {
     public void deleteAccomodationById(Long accommodationId) {
         this.accommodationRepository.deleteById(accommodationId);
     }
+
+    @Override
+    public List<AccommodationResponse> getAccommodationsFromUser(User user) {
+        List<Accommodation> model = this.accommodationEntityConverter.apply( this.accommodationRepository.findAll());
+        model.removeIf(a -> a.getUser().getUserId() !=  user.getUserId() );
+        return this.accommodationConverter.apply(model);
+    }
 }
