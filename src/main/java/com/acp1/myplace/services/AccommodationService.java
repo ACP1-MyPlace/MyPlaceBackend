@@ -2,6 +2,7 @@ package com.acp1.myplace.services;
 
 import com.acp1.myplace.dto.accommodation.AccommodationRequest;
 import com.acp1.myplace.dto.accommodation.AccommodationResponse;
+import com.acp1.myplace.model.user.User;
 
 import java.util.List;
 
@@ -17,4 +18,5 @@ public interface AccommodationService {
 
     void deleteAccomodationById(Long accommodationId);
 
+    List<AccommodationResponse> getAccommodationsFromUser(User user);
 }
