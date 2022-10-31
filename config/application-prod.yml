@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application.name: itil-api
+  datasource:
+    url: jdbc:postgresql://dpg-cdfeprkgqg4d3ghlh6pg-a.oregon-postgres.render.com/myplacefiubadb
+    driverClassName: org.postgresql.Driver
+    username: myplace
+    password: wPtQm9a49FphQ8EFiq6cTw3JaYCnWO1R
+
+  jpa:
+    hibernate.ddl-auto: none
+    properties:
+      hibernate.hbm2ddl.delimiter: ';'
+      javax.persistence.schema-generation:
+        create-source: metadata
+        scripts:
+          action: create
+          create-target: myplace-tables_psql.sql
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+
+environment: development
+jwt.secret: asdasdasdasdasds124i5238-jfk093j42,fm-a9jre2rfomj3-0wmmjnafasfggsdsdfkmnmqwebn
