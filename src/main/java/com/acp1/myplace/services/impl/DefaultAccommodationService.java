@@ -1,23 +1,29 @@
 package com.acp1.myplace.services.impl;
 
+import com.acp1.myplace.converters.impl.AccommodationConverter;
 import com.acp1.myplace.converters.impl.AccommodationEntityConverter;
 import com.acp1.myplace.converters.impl.AccommodationRequestConverter;
-import com.acp1.myplace.converters.impl.AccommodationConverter;
 import com.acp1.myplace.domain.user.UserType;
 import com.acp1.myplace.dto.accommodation.AccommodationRequest;
 import com.acp1.myplace.dto.accommodation.AccommodationResponse;
 import com.acp1.myplace.entities.AccommodationEntity;
 import com.acp1.myplace.exceptions.UserNotHostException;
+import com.acp1.myplace.factories.QueryFactory;
 import com.acp1.myplace.model.accommodation.Accommodation;
+import com.acp1.myplace.model.accommodation.Query;
 import com.acp1.myplace.model.user.User;
 import com.acp1.myplace.repositories.AccommodationRepository;
 import com.acp1.myplace.services.AccommodationService;
 import com.acp1.myplace.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -53,8 +59,10 @@ public class DefaultAccommodationService implements AccommodationService {
     }
 
     @Override
-    public List<AccommodationResponse> getAccommodations() {
-        List<Accommodation> model = this.accommodationEntityConverter.apply(this.accommodationRepository.findAll());
+    public List<AccommodationResponse> getAccommodations(Pageable queryParams) {
+        Query query = QueryFactory.create(queryParams);
+        Page<AccommodationEntity> results = this.accommodationRepository.findAll(PageRequest.of(query.getPage(), query.getPageSize()));
+        List<Accommodation> model = this.accommodationEntityConverter.apply(results.get().collect(Collectors.toList()));
         return this.accommodationConverter.apply(model);
     }
 

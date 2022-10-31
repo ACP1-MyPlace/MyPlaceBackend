@@ -4,9 +4,13 @@ import com.acp1.myplace.dto.accommodation.AccommodationRequest;
 import com.acp1.myplace.dto.accommodation.AccommodationResponse;
 import com.acp1.myplace.model.user.User;
 import com.acp1.myplace.services.AccommodationService;
+
+
 import com.acp1.myplace.services.JwtManager;
 import com.acp1.myplace.services.UserService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable;
+
 
 import javax.validation.Valid;
 import java.util.List;
@@ -27,13 +31,13 @@ public class AccommodationController {
     }
 
     @PostMapping("")
-    public AccommodationResponse addAccommodation(@RequestBody @Valid AccommodationRequest requestDTO) {
+    public AccommodationResponse getAccommodations(@RequestBody @Valid AccommodationRequest requestDTO) {
         return this.accommodationService.createAccommodation(requestDTO);
     }
 
     @GetMapping("")
-    public List<AccommodationResponse> addAccommodation() {
-        return this.accommodationService.getAccommodations();
+    public List<AccommodationResponse> getAccommodations(Pageable queryParams) {
+        return this.accommodationService.getAccommodations(queryParams);
     }
 
     @DeleteMapping("/{id}")
