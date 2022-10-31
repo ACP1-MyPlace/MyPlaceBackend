@@ -7,6 +7,7 @@ import com.acp1.myplace.domain.user.UserType;
 import com.acp1.myplace.dto.accommodation.AccommodationRequest;
 import com.acp1.myplace.dto.accommodation.AccommodationResponse;
 import com.acp1.myplace.entities.AccommodationEntity;
+import com.acp1.myplace.exceptions.AccommodationNotFoundException;
 import com.acp1.myplace.exceptions.UserNotHostException;
 import com.acp1.myplace.model.accommodation.Accommodation;
 import com.acp1.myplace.model.user.User;
@@ -59,8 +60,8 @@ public class DefaultAccommodationService implements AccommodationService {
     }
 
     @Override
-    public AccommodationResponse getAccommodation(Long accommodationId) {
-        return null;
+    public AccommodationEntity getAccommodation(Long accommodationId) {
+        return accommodationRepository.findById(accommodationId).orElseThrow(() -> new AccommodationNotFoundException());
     }
 
     @Override
