@@ -25,7 +25,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class ReservationServiceImpl implements ReservationService {
+public class DefaultReservationService implements ReservationService {
 
     @Autowired
     private ReservationRequestConverter reservationRequestConverter;

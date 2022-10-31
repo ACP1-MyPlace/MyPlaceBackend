@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 import com.acp1.myplace.services.UserService;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class DefaultUserDetailsService implements UserDetailsService {
 
     private UserService userService;
 
-    public UserDetailsServiceImpl(UserService userService) {
+    public DefaultUserDetailsService(UserService userService) {
         this.userService = userService;
     }
 

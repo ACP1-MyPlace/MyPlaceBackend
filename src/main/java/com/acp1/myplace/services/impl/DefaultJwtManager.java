@@ -18,7 +18,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
-public class JwtManagerImpl implements JwtManager {
+public class DefaultJwtManager implements JwtManager {
     private static final long serialVersionUID = -2550185165626007488L;
 
     public static final long JWT_TOKEN_VALIDITY = 10L * 60 * 60;
@@ -26,7 +26,7 @@ public class JwtManagerImpl implements JwtManager {
     private String secret;
     
     
-    public JwtManagerImpl(@Value("${jwt.secret}") String secret) {
+    public DefaultJwtManager(@Value("${jwt.secret}") String secret) {
         this.secret = secret;
     }
 
