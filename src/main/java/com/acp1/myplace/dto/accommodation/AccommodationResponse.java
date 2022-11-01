@@ -54,4 +54,6 @@ public class AccommodationResponse {
     @NotNull private Price price;
 
     private String description;
+
+    private List<String> photoIds;
 }

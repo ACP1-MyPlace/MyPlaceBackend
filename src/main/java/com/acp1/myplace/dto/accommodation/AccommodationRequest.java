@@ -47,4 +47,6 @@ public class AccommodationRequest {
     @NotNull private Price price;
 
     private String description;
+
+    private List<String> photoIds;
 }

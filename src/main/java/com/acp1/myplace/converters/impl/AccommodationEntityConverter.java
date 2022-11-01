@@ -31,6 +31,7 @@ public class AccommodationEntityConverter implements Converter<AccommodationEnti
                         .currency(CurrencyType.fromCurrencyId(accommodationEntity.getPriceCurrencyId()).getCurrency())
                         .build())
                 .description(accommodationEntity.getDescription())
+                .photoIds(accommodationEntity.getPhotoIds())
                 .build();
     }
 
@@ -52,6 +53,7 @@ public class AccommodationEntityConverter implements Converter<AccommodationEnti
                 .priceCurrencyId(accommodation.getPrice().getCurrency().getCurrencyId())
                 .priceAmount(accommodation.getPrice().getAmount())
                 .description(accommodation.getDescription())
+                .photoIds(accommodation.getPhotoIds())
                 .build();
     }
 }

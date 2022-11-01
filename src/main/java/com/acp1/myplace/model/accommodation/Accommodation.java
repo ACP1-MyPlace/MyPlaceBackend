@@ -62,4 +62,7 @@ public class Accommodation {
 
     private String description;
 
+    @NotNull
+    private List<String> photoIds;
+
 }
