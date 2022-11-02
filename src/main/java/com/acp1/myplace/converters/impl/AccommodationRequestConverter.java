@@ -29,6 +29,7 @@ public class AccommodationRequestConverter implements Converter<AccommodationReq
                 .services(accommodationRequest.getServices())
                 .price(accommodationRequest.getPrice())
                 .description(accommodationRequest.getDescription())
+                .photoIds(accommodationRequest.getPhotoIds())
                 .build();
     }
 

@@ -92,4 +92,10 @@ public class AccommodationEntity {
     @Column
     private String description;
 
+    @ElementCollection
+    @CollectionTable(name = "accommodation_photos",
+                     joinColumns = @JoinColumn(name = "accommodation_id", referencedColumnName = "id")
+    )
+    @Column(name = "photos")
+    private List<String> photoIds = new ArrayList<>();
 }

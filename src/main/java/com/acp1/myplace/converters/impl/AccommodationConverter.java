@@ -34,6 +34,7 @@ public class AccommodationConverter implements Converter<Accommodation, Accommod
                 .services(accommodation.getServices())
                 .price(accommodation.getPrice())
                 .description(accommodation.getDescription())
+                .photoIds(accommodation.getPhotoIds())
                 .build();
     }
 
@@ -62,6 +63,7 @@ public class AccommodationConverter implements Converter<Accommodation, Accommod
                 .services(accommodationResponse.getServices())
                 .price(accommodationResponse.getPrice())
                 .description(accommodationResponse.getDescription())
+                .photoIds(accommodationResponse.getPhotoIds())
                 .build();
     }
 }
