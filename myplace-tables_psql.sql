@@ -43,3 +43,13 @@
        add constraint FKp0dg4bgd1dnioaadgcdb9ccvi 
        foreign key (user_id) 
        references users;
+
+    create table accommodation_photos (
+       accommodation_id int8 not null,
+        photos varchar(255)
+    );
+
+    alter table accommodation_photos 
+       add constraint FKkc2w34n4p5do3g5hub8ibr9he 
+       foreign key (accommodation_id) 
+       references accommodations;
