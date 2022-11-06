@@ -65,21 +65,29 @@ public class DefaultReservationService implements ReservationService {
         return this.reservationConverter.apply(model);
     }
 
-    private void checkReservationDates(LocalDateTime startingDate, LocalDateTime finishingDate, Long accommodationId){
+    private void checkReservationDates(LocalDateTime startingDate, LocalDateTime finishingDate, Long accommodationId, Long reservationId){
         List<ReservationEntity> reservations = reservationRepository.findByAccommodationIdAndStartingDateBetween(accommodationId, startingDate, finishingDate);
         if(! reservations.isEmpty()){
-            throw new AccommodationAlreadyReservedException();
+            for (ReservationEntity reservation : reservations){
+                if(reservation.getId() != reservationId){
+                    throw new AccommodationAlreadyReservedException();
+                }
+            }
         }
 
         reservations = reservationRepository.findByAccommodationIdAndFinishingDateBetween(accommodationId, startingDate, finishingDate);
         if(! reservations.isEmpty()){
-            throw new AccommodationAlreadyReservedException();
+            for (ReservationEntity reservation : reservations){
+                if(reservation.getId() != reservationId){
+                    throw new AccommodationAlreadyReservedException();
+                }
+            }
         }
     }
 
     @Override
     public ReservationResponse createReservation(ReservationRequest newReservation) {
-        checkReservationDates(newReservation.getStartingDate(), newReservation.getFinishingDate(), newReservation.getAccommodationId());
+        checkReservationDates(newReservation.getStartingDate(), newReservation.getFinishingDate(), newReservation.getAccommodationId(), 0L);
         newReservation.setStatus(ReservationStatus.PENDING);
         Reservation reservation = this.reservationRequestConverter.apply(newReservation);
         User user = this.userService.getUserById(reservation.getUser().getUserId());
@@ -95,7 +103,7 @@ public class DefaultReservationService implements ReservationService {
 
     @Override
     public ReservationResponse updateReservation(Long reservationId, ReservationRequest update) {
-        checkReservationDates(update.getStartingDate(), update.getFinishingDate(), update.getAccommodationId());
+        checkReservationDates(update.getStartingDate(), update.getFinishingDate(), update.getAccommodationId(), reservationId);
 
         Reservation reservationUpdate = this.reservationRequestConverter.apply(update);
         ReservationEntity reservationEntityUpdate = this.reservationEntityConverter.revert(reservationUpdate);
