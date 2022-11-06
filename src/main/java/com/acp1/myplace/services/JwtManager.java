@@ -10,5 +10,5 @@ public interface JwtManager {
 
     public String getMailFromToken(String token);
 
-    public JwtResponse generateToken(String mail, UserType userType);
+    public JwtResponse generateToken(String mail, UserType userType, Long id);
 }
