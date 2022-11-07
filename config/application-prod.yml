@@ -8,6 +8,7 @@ spring:
     driverClassName: org.postgresql.Driver
     username: myplace
     password: wPtQm9a49FphQ8EFiq6cTw3JaYCnWO1R
+    hikari.maxLifeTime : 150000
 
   jpa:
     hibernate.ddl-auto: none
