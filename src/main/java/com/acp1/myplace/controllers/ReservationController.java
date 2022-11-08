@@ -18,6 +18,10 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/reservations")
 public class ReservationController {
+
+    
+    private static final int TOKEN_START = 7;
+    
     private AccommodationService accommodationService;
 
     private final JwtManager jwtManager;
@@ -44,8 +48,14 @@ public class ReservationController {
     }
 
     @GetMapping("/myreservations")
-    public List<ReservationResponse> getMyReservation(@RequestHeader(value="auth") String userToken){
-        String email = jwtManager.getMailFromToken(userToken);
+    public List<ReservationResponse> getMyReservation(@RequestHeader(value="Authorization") String authorizationHeader){
+        String email = null;
+
+        if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
+            var token = authorizationHeader.substring(TOKEN_START);
+            email = jwtManager.getMailFromToken(token);
+        }
+
         User user = userService.getUserByMail(email);
         List<ReservationResponse> reservations = null;
         if (user.getType().equals(UserType.HOST_USER)){

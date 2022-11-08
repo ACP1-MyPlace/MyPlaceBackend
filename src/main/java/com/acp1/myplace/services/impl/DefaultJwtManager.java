@@ -62,10 +62,11 @@ public class DefaultJwtManager implements JwtManager {
     }
     
     @Override
-    public JwtResponse generateToken(String mail, UserType userType) {
+    public JwtResponse generateToken(String mail, UserType userType, Long id) {
         
         Map<String, Object> claims = new HashMap<>();
         claims.put("userType", userType);
+        claims.put("id", id);
         return new JwtResponse(generateToken(claims, mail));
     }
 

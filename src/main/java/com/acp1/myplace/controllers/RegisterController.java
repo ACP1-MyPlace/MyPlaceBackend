@@ -2,9 +2,11 @@ package com.acp1.myplace.controllers;
 
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acp1.myplace.dto.JwtResponse;
@@ -18,17 +20,17 @@ public class RegisterController {
 
     private UserService userService;
 
-    private JwtManager jwtManager;
 
-    public RegisterController(UserService userService, JwtManager jwtManager) {
+
+    public RegisterController(UserService userService) {
         this.userService = userService;
-        this.jwtManager = jwtManager;
+
     }
 
     @PostMapping("/register")
-    public JwtResponse signUpUser(@RequestBody @Valid UserRegister user){
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void signUpUser(@RequestBody @Valid UserRegister user){
         userService.registerNewUser(user);
-        return jwtManager.generateToken(user.getMail(), user.getType());
     }
 
 }

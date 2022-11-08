@@ -28,6 +28,6 @@ public class LoginController {
     @PostMapping("/login")
     public JwtResponse login(@RequestBody @Valid UsernamePasswordLogin usernameAndPassword){
         var user = userService.validateUsernameAndPassword(usernameAndPassword);
-        return jwtManager.generateToken(user.getEmail(),user.getType());
+        return jwtManager.generateToken(user.getEmail(),user.getType(), user.getUserId());
     }
 }
