@@ -17,7 +17,7 @@ spring:
       javax.persistence.schema-generation:
         create-source: metadata
         scripts:
-          action: create
+          action: update
           create-target: myplace-tables_psql.sql
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
