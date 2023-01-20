@@ -1,5 +1,7 @@
 # Backend MyPlace
 
+Backend de la aplicación MyPlace - Sitio para realizar reservas de alojamiento al estilo AirBnB.
+
 ## Compilación
 
 ```
